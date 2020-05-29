@@ -3,7 +3,7 @@ require('./src/libs/agenda.lib');
 const express = require('express');
 
 import "reflect-metadata";
-import {createExpressServer, useExpressServer} from "routing-controllers";
+import {useExpressServer} from "routing-controllers";
 import {connect} from './src/databases/mongodb'
 import * as get_settings from './src/get_settings';
 
@@ -15,7 +15,6 @@ connect(settings.mongodb.url, {
 
 const app = express();
 useExpressServer(app, {
-// const app = createExpressServer({
     cors: true,
     routePrefix: "/api",
     controllers: [ __dirname + "/src/controllers/*.js"],
@@ -23,12 +22,14 @@ useExpressServer(app, {
         AuthorizationRequiredError: { stack: undefined } // hide error stack
     }
 })
-console.log(__dirname + '/public');
 
-app.use('/', express.static(__dirname + '/public'));
+app.use('/', express.static(__dirname + '/public', { redirect: false }));
+app.get('*',(req,res) =>{
+    return res.sendFile(__dirname + '/public/index.html');
+});
 
 app.listen(process.env.PORT || settings.port);
 
-console.log('octopoda listening on port: ', settings.port);
+console.log('Denga listening on port: ', settings.port);
 console.log('Production mode: ', settings.prod);
 console.log('Press Ctrl+C to quit.');

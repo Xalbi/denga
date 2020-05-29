@@ -8,11 +8,6 @@ export async function connect(url, options?: MongoClientOptions) {
     db = db.db('octopoda');
 }
 
-
-export function WebsitesDB(): Collection {
-    return db.collection('websites');
-}
-
-export function ArticlesDB(): Collection {
-    return db.collection('articles');
+export function JobsDB(): Collection {
+    return db.collection('agenda_jobs');
 }
