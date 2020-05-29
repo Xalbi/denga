@@ -25,6 +25,22 @@ npm run build
 * client (Angular)
 * server (Node.js)
 
+# Features
+* WIP
+
+
+# TODO
+
+* Display 100 jobs in home page
+* Display job details
+* Manage pagination ?!
+* Manage refresh
+* Make jobs filtrable by name
+* Make jobs filtrable by custom properties (~ get an array from config file)
+* Requeue and delete jobs 
+* Setup config system (config file and/or command line arguments )
+* Make it run as NodeJS command-line package
+* Ship 1st release :pray: 
 
 
 
