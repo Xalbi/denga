@@ -1,5 +1,5 @@
 # Denga
-the project is currently under development
+:warning: the project is currently under development :construction:
 
 [Agenda](https://github.com/agenda/agenda) Dashboard
 
@@ -26,7 +26,7 @@ npm run build
 * server (Node.js)
 
 # Features
-* WIP
+* WIP :fire:
 
 
 # TODO
@@ -39,8 +39,8 @@ npm run build
 * Make jobs filtrable by custom properties (~ get an array from config file)
 * Requeue and delete jobs 
 * Setup config system (config file and/or command line arguments )
-* Make it run as NodeJS command-line package
-* Ship 1st release :pray: 
+* Make it run as NodeJS command-line package :sunglasses:
+* Ship 1st release :pray: :rocket:
 
 
 
