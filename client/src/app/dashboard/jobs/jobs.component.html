@@ -1,6 +1,4 @@
-<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-
-    <!-- Checkbox Column -->
+<table *ngIf="JOB_DATA.length" mat-table [dataSource]="dataSource" class="mat-elevation-z8">
     <ng-container matColumnDef="select">
       <th mat-header-cell *matHeaderCellDef>
         <mat-checkbox (change)="$event ? masterToggle() : null"
@@ -18,28 +16,29 @@
       </td>
     </ng-container>
   
-    <!-- Position Column -->
-    <ng-container matColumnDef="position">
-      <th mat-header-cell *matHeaderCellDef> No. </th>
-      <td mat-cell *matCellDef="let element"> {{element.position}} </td>
-    </ng-container>
-  
-    <!-- Name Column -->
     <ng-container matColumnDef="name">
-      <th mat-header-cell *matHeaderCellDef> Name </th>
+      <th mat-header-cell *matHeaderCellDef> name </th>
       <td mat-cell *matCellDef="let element"> {{element.name}} </td>
     </ng-container>
   
-    <!-- Weight Column -->
-    <ng-container matColumnDef="weight">
-      <th mat-header-cell *matHeaderCellDef> Weight </th>
-      <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
+    <ng-container matColumnDef="type">
+      <th mat-header-cell *matHeaderCellDef> type </th>
+      <td mat-cell *matCellDef="let element"> {{element.type}} </td>
     </ng-container>
   
-    <!-- Symbol Column -->
-    <ng-container matColumnDef="symbol">
-      <th mat-header-cell *matHeaderCellDef> Symbol </th>
-      <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+    <ng-container matColumnDef="lastRunAt">
+      <th mat-header-cell *matHeaderCellDef> lastRunAt </th>
+      <td mat-cell *matCellDef="let element"> {{element.lastRunAt | amTimeAgo}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="nextRunAt">
+      <th mat-header-cell *matHeaderCellDef> nextRunAt </th>
+      <td mat-cell *matCellDef="let element"> {{element.nextRunAt | amTimeAgo}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="repeatInterval">
+      <th mat-header-cell *matHeaderCellDef> repeatInterval </th>
+      <td mat-cell *matCellDef="let element"> {{element.repeatInterval}} </td>
     </ng-container>
   
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
