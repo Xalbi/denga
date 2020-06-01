@@ -4,6 +4,7 @@ export const environment_prod = {
     mongodb: {
         url: 'mongodb://127.0.0.1:27017/octopoda'
     },
+    collection: 'agenda_jobs',
     agenda: {
         on: true
     }
