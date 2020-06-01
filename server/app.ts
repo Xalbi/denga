@@ -30,6 +30,5 @@ app.get('*',(req,res) =>{
 
 app.listen(process.env.PORT || settings.port);
 
-console.log('Denga listening on port: ', settings.port);
-console.log('Production mode: ', settings.prod);
+console.log('Denga started...  URL : http://localhost:' + settings.port);
 console.log('Press Ctrl+C to quit.');
