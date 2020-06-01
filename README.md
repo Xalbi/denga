@@ -43,7 +43,10 @@ npm run build
 * Ship 1st release :pray: :rocket:
 
 
+# Story
+I'm a fan of Agenda :star: , and I'm using it in several projects for a very long time. And I've always used, Agendash as the dashboard, But I must say, it wasn't created to cover all the various situations (I've spent too many hours writing MongoDB queries). 
 
+So making Denga is a way to save some time.
 
 ## License
 GNU General Public License v3.0
