@@ -1,3 +1,19 @@
-table {
-    width: 100%;
+
+.table-list {
+    margin-left: 10%;
+    margin-right: 10%;
+    width: 80%;
+}
+
+.mat-standard-chip {
+    min-height: 25px;
+}
+
+.mat-chip.mat-standard-chip.mat-chip-selected.mat-primary.completed{
+    background-color: green;
+}
+
+.mat-chip.mat-standard-chip.mat-chip-selected.mat-primary.repeat{
+    background-color: lightblue;
+    color: black
 }

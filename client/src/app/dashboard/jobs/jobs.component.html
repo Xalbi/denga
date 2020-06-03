@@ -1,4 +1,4 @@
-<table *ngIf="JOB_DATA.length" mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+<table *ngIf="JOB_DATA.length" mat-table [dataSource]="dataSource" class="mat-elevation-z8 table-list">
     <ng-container matColumnDef="select">
       <th mat-header-cell *matHeaderCellDef>
         <mat-checkbox (change)="$event ? masterToggle() : null"
@@ -16,29 +16,45 @@
       </td>
     </ng-container>
   
+    <ng-container matColumnDef="repeatInterval">
+      <th mat-header-cell *matHeaderCellDef> Status </th>
+      <td mat-cell *matCellDef="let element">  
+
+        <mat-chip-list *ngIf="element.states" aria-label="job status">
+          <mat-chip class="repeat" selected>
+            <mat-icon *ngIf="element.states.repeating" aria-hidden="false" aria-label="repeating">repeat</mat-icon>  
+            {{element.repeatInterval}}
+          </mat-chip> 
+          <mat-chip *ngIf="element.states.scheduled" class="repeat" selected>Scheduled</mat-chip>
+          <mat-chip *ngIf="element.states.queued" class="repeat" selected>Queued</mat-chip>
+
+          <mat-chip *ngIf="element.states.running" color="accent" selected>Running</mat-chip>
+          <mat-chip *ngIf="element.states.failed" [matTooltip]="element.failReason" color="warn" selected>Failed</mat-chip>
+          <mat-chip *ngIf="element.states.completed" class="completed"  selected>Completed</mat-chip>
+        </mat-chip-list>
+        
+
+      </td>
+    </ng-container>
+
     <ng-container matColumnDef="name">
-      <th mat-header-cell *matHeaderCellDef> name </th>
+      <th mat-header-cell *matHeaderCellDef> Name </th>
       <td mat-cell *matCellDef="let element"> {{element.name}} </td>
     </ng-container>
   
     <ng-container matColumnDef="type">
-      <th mat-header-cell *matHeaderCellDef> type </th>
+      <th mat-header-cell *matHeaderCellDef> Type </th>
       <td mat-cell *matCellDef="let element"> {{element.type}} </td>
     </ng-container>
   
     <ng-container matColumnDef="lastRunAt">
-      <th mat-header-cell *matHeaderCellDef> lastRunAt </th>
+      <th mat-header-cell *matHeaderCellDef> Last run </th>
       <td mat-cell *matCellDef="let element"> {{element.lastRunAt | amTimeAgo}} </td>
     </ng-container>
   
     <ng-container matColumnDef="nextRunAt">
-      <th mat-header-cell *matHeaderCellDef> nextRunAt </th>
+      <th mat-header-cell *matHeaderCellDef> Next run </th>
       <td mat-cell *matCellDef="let element"> {{element.nextRunAt | amTimeAgo}} </td>
-    </ng-container>
-
-    <ng-container matColumnDef="repeatInterval">
-      <th mat-header-cell *matHeaderCellDef> repeatInterval </th>
-      <td mat-cell *matCellDef="let element"> {{element.repeatInterval}} </td>
     </ng-container>
   
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
@@ -46,3 +62,5 @@
         (click)="selection.toggle(row)">
     </tr>
   </table>
+
+ 
