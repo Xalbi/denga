@@ -9,7 +9,9 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
 import { MatPaginatorModule } from '@angular/material/paginator';
-import {MatCheckboxModule} from '@angular/material/checkbox';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatIconModule } from '@angular/material/icon';
 
 
 @NgModule({
@@ -26,8 +28,10 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 		MatSortModule,
 		MatPaginatorModule,
 		MatCheckboxModule,
+		MatChipsModule,
+		MatIconModule
 	],
-	exports :[
+	exports: [
 		BrowserAnimationsModule,
 		MatButtonModule,
 		MatNativeDateModule,
@@ -37,7 +41,9 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 		MatTableModule,
 		MatSortModule,
 		MatPaginatorModule,
-		MatCheckboxModule
+		MatCheckboxModule,
+		MatChipsModule,
+		MatIconModule
 
 	]
 })
