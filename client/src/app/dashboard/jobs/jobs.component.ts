@@ -18,8 +18,18 @@ export interface Job {
 	lastModifiedBy: any,
 	failCount?: number,
 	failReason?: string,
-	failedAt?: Date
+	failedAt?: Date,
+	states?: JobStates
 }
+export interface JobStates {
+	failed?: boolean,
+	running?: boolean,
+	scheduled?: boolean,
+	queued?: boolean,
+	completed?: boolean,
+	repeating?: boolean
+}
+
 
 @Component({
 	selector: 'app-jobs',
@@ -29,22 +39,21 @@ export interface Job {
 export class JobsComponent implements OnInit {
 	JOB_DATA: Job[] = []
 	dataSource
-	displayedColumns: string[] = ['name', 'type', 'lastRunAt', 'nextRunAt', 'repeatInterval'];
-	selection = new SelectionModel<Job>(true, []);
+	selection
+	displayedColumns: string[] = ['repeatInterval', 'name', 'type', 'lastRunAt', 'nextRunAt'];
 	@ViewChild(MatTable) table: MatTable<any>;
-	private refresh: Subscription;
+	refresh: Subscription;
+
 	constructor(
 		private jobsService: JobsService,
 	) { }
 
 	async ngOnInit() {
+		await this.init()
 		this.refresh = interval(2000).subscribe(async (val) => {
 			try {
 				await this.init()
 			} catch (error) {
-				/**
-				 * lost server cnx
-				 */
 			}
 		})
 	}
@@ -52,25 +61,27 @@ export class JobsComponent implements OnInit {
 	async init() {
 		this.JOB_DATA = await this.jobsService.getJobs().toPromise()
 		this.dataSource = new MatTableDataSource<Job>(this.JOB_DATA);
+		this.selection = new SelectionModel<Job>(true, []);
+
+		this.JOB_DATA.forEach(job => {
+			job.states = this.computeJobStates(job)
+		})
 	}
 
 
 
-	/** Whether the number of selected elements matches the total number of rows. */
 	isAllSelected() {
 		const numSelected = this.selection.selected.length;
 		const numRows = this.dataSource.data.length;
 		return numSelected === numRows;
 	}
 
-	/** Selects all rows if they are not all selected; otherwise clear selection. */
 	masterToggle() {
 		this.isAllSelected() ?
 			this.selection.clear() :
 			this.dataSource.data.forEach(row => this.selection.select(row));
 	}
 
-	/** The label for the checkbox on the passed row */
 	checkboxLabel(row?: Job): string {
 		if (!row) {
 			return `${this.isAllSelected() ? 'select' : 'deselect'} all`;
@@ -78,5 +89,30 @@ export class JobsComponent implements OnInit {
 		return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.name + 1}`;
 	}
 
+	computeJobStates(job: Job): JobStates {
+		let now = new Date().getTime()
+		let lastRunAt = new Date(job.lastRunAt).getTime()
+		let lastFinishedAt = new Date(job.lastFinishedAt).getTime()
+		let failedAt = new Date(job.failedAt).getTime()
+		let nextRunAt = new Date(job.nextRunAt).getTime()
+		failedAt = isNaN(failedAt) ? 0 : failedAt
+		
+		let failed = job.lastFinishedAt == job.failedAt
+		let running = lastRunAt && (lastRunAt > lastFinishedAt)
+		let completed = lastFinishedAt && (lastFinishedAt > failedAt)
+		let scheduled = nextRunAt && (nextRunAt >= now)
+		let queued = nextRunAt && (now >= nextRunAt) && (nextRunAt >= lastFinishedAt)
+		let repeating = job.repeatInterval !== null
+
+		return {
+			failed,
+			running,
+			completed,
+			scheduled,
+			queued,
+			repeating
+		}
+
+	}
 
 }
