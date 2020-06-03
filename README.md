@@ -25,6 +25,11 @@ npm run build
 * client (Angular)
 * server (Node.js)
 
+# Requirement
+* The Angular CLI requires a minimum Node.js version of either v10.13 or v12.0.
+
+
+
 # Features
 * WIP :fire:
 
