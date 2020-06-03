@@ -17,6 +17,9 @@ import { MomentModule } from 'ngx-moment';
 	],
 	providers: [
 		JobsService
+	],
+	exports: [
+		JobsComponent
 	]
 })
 export class DashboardModule { }
