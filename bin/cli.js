@@ -3,7 +3,7 @@
 const meow = require('meow');
 const Config = require('conf');
 const settings = new Config();
-const myapp = require('../built/app');
+const myapp = require('../server/app');
 
 const cli = meow(`
 	Usage
