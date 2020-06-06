@@ -1,7 +1,41 @@
 # Denga
-:warning: the project is currently under development :construction:
+:warning: you can install the project but many features still under development :construction:
 
 A modern [Agenda](https://github.com/agenda/agenda) Dashboard made with :balloon: Angular :tada:
+
+# Install
+
+```console
+$ npm install denga
+```
+
+# Usage
+
+```console
+$ denga --db mongodb://127.0.0.1:27017/denga 
+```
+
+# Options
+
+
+`--db, -d`: (required) connection URI used to connect to a MongoDB
+
+`--port, -p`: (optional) server port, default 3000
+
+
+`--collection, -c`:	(optional) Mongo collection, same as Agenda collection name, default agendaJobs
+
+
+`--limit, -l`:	(optional) max number of jobs displayed, default 100
+
+
+`--title, -t`:	(optional) page title, default Denga
+
+
+# Example
+```console
+$ denga -p 3010 -c jobs -t myDashBoard --limit=300 -d mongodb://127.0.0.1:27017/denga
+```
 
 # Scripts
 In your dev environment, you can kick off the project (server and client) under nodemon with 
@@ -31,13 +65,16 @@ npm run build
 
 
 # Features
+
+* Monitor jobs
+* Auto refresh with "toggle switch" (on/off) 
 * WIP :fire:
 
 
 # TODO
 
 - [x] Setup config system (config file and/or command line arguments )
-- [x] Display 100 jobs in home page ()
+- [x] Display 100 jobs in home page
 - [x] Manage refresh
 - [x] Manage refresh "toggle switch" (on/off button) 
 - [ ] Display job details
