@@ -40,20 +40,30 @@ export class JobsComponent implements OnInit {
 	JOB_DATA: Job[] = []
 	dataSource
 	selection
-	displayedColumns: string[] = ['repeatInterval', 'name', 'type', 'lastRunAt', 'nextRunAt'];
+	displayedColumns: string[] = [
+		'repeatInterval',
+		'name',
+		'type',
+		'lastRunAt',
+		'nextRunAt',
+		'lastFinishedAt',
+	];
 	@ViewChild(MatTable) table: MatTable<any>;
 	refresh: Subscription;
-
+	refreshState = true
 	constructor(
 		private jobsService: JobsService,
 	) { }
 
 	async ngOnInit() {
 		await this.init()
+
 		this.refresh = interval(2000).subscribe(async (val) => {
-			try {
-				await this.init()
-			} catch (error) {
+			if (this.refreshState) {
+				try {
+					await this.init()
+				} catch (error) {
+				}
 			}
 		})
 	}
@@ -68,7 +78,10 @@ export class JobsComponent implements OnInit {
 		})
 	}
 
-
+	applyFilter(event: Event) {
+		const filterValue = (event.target as HTMLInputElement).value;
+		this.dataSource.filter = filterValue.trim().toLowerCase();
+	}
 
 	isAllSelected() {
 		const numSelected = this.selection.selected.length;
@@ -96,13 +109,14 @@ export class JobsComponent implements OnInit {
 		let failedAt = new Date(job.failedAt).getTime()
 		let nextRunAt = new Date(job.nextRunAt).getTime()
 		failedAt = isNaN(failedAt) ? 0 : failedAt
+		lastFinishedAt = isNaN(lastFinishedAt) ? 0 : lastFinishedAt
 		
-		let failed = job.lastFinishedAt == job.failedAt
+		let failed = (lastFinishedAt && failedAt) && (lastFinishedAt == failedAt)
 		let running = lastRunAt && (lastRunAt > lastFinishedAt)
 		let completed = lastFinishedAt && (lastFinishedAt > failedAt)
 		let scheduled = nextRunAt && (nextRunAt >= now)
 		let queued = nextRunAt && (now >= nextRunAt) && (nextRunAt >= lastFinishedAt)
-		let repeating = job.repeatInterval !== null
+		let repeating = (job.repeatInterval !== null && job.repeatInterval !== undefined)
 
 		return {
 			failed,
