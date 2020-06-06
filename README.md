@@ -41,17 +41,17 @@ $ denga -p 3010 -c jobs -t myDashBoard --limit=300 -d mongodb://127.0.0.1:27017/
 In your dev environment, you can kick off the project (server and client) under nodemon with 
 
 ```console
-npm run monitor
+$ npm run monitor
 ```
 
 you can launch an unmonitored process with 
 ```console
-npm run all
+$ npm run all
 ```
 
 to run build on both server and client-side
 ```console
-npm run build 
+$ npm run build 
 ```
 
 # Project Structure
