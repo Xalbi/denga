@@ -1,34 +1,37 @@
 'use strict';
+import "reflect-metadata";
+import { useExpressServer } from "routing-controllers";
+import { connect } from './src/databases/mongodb'
 require('./src/libs/agenda.lib');
 const express = require('express');
 
-import "reflect-metadata";
-import {useExpressServer} from "routing-controllers";
-import {connect} from './src/databases/mongodb'
-import * as get_settings from './src/get_settings';
+const Config = require('conf');
+const settings = new Config();
 
-const settings = get_settings.json()
-connect(settings.mongodb.url, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
+connect(settings.get('db'), {
+	useNewUrlParser: true,
+	useUnifiedTopology: true
 });
 
 const app = express();
 useExpressServer(app, {
-    cors: true,
-    routePrefix: "/api",
-    controllers: [ __dirname + "/src/controllers/*.js"],
-    errorOverridingMap: {
-        AuthorizationRequiredError: { stack: undefined } // hide error stack
-    }
+	cors: true,
+	routePrefix: "/api",
+	controllers: [__dirname + "/src/controllers/*.js"],
+	errorOverridingMap: {
+		AuthorizationRequiredError: { stack: undefined } // hide error stack
+	}
 })
 
 app.use('/', express.static(__dirname + '/public', { redirect: false }));
-app.get('*',(req,res) =>{
-    return res.sendFile(__dirname + '/public/index.html');
+app.get('*', (req, res) => {
+	return res.sendFile(__dirname + '/public/index.html');
 });
 
-app.listen(process.env.PORT || settings.port);
-
-console.log('Denga started...  URL : http://localhost:' + settings.port);
-console.log('Press Ctrl+C to quit.');
+module.exports = {
+	run: function () {
+		app.listen(process.env.PORT || settings.get('port'));
+		console.log('Denga started...  URL : http://localhost:' + settings.get('port'));
+		console.log('Press Ctrl+C to quit.');
+	}
+}
