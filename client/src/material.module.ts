@@ -12,7 +12,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatIconModule } from '@angular/material/icon';
-
+import { MatInputModule } from '@angular/material/input';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 @NgModule({
 	declarations: [],
@@ -29,7 +30,9 @@ import { MatIconModule } from '@angular/material/icon';
 		MatPaginatorModule,
 		MatCheckboxModule,
 		MatChipsModule,
-		MatIconModule
+		MatIconModule,
+		MatInputModule,
+		MatSlideToggleModule
 	],
 	exports: [
 		BrowserAnimationsModule,
@@ -43,7 +46,9 @@ import { MatIconModule } from '@angular/material/icon';
 		MatPaginatorModule,
 		MatCheckboxModule,
 		MatChipsModule,
-		MatIconModule
+		MatIconModule,
+		MatInputModule,
+		MatSlideToggleModule
 
 	]
 })
