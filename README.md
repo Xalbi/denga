@@ -1,7 +1,7 @@
 # Denga
 :warning: the project is currently under development :construction:
 
-[Agenda](https://github.com/agenda/agenda) Dashboard
+A modern [Agenda](https://github.com/agenda/agenda) Dashboard made with :balloon: Angular :tada:
 
 # Scripts
 In your dev environment, you can kick off the project (server and client) under nodemon with 
@@ -36,16 +36,17 @@ npm run build
 
 # TODO
 
-* Display 100 jobs in home page
-* Display job details
-* Manage pagination ?!
-* Manage refresh
-* Make jobs filtrable by name
-* Make jobs filtrable by custom properties (~ get an array from config file)
-* Requeue and delete jobs 
-* Setup config system (config file and/or command line arguments )
-* Make it run as NodeJS command-line package :sunglasses:
-* Ship 1st release :pray: :rocket:
+- [x] Setup config system (config file and/or command line arguments )
+- [x] Display 100 jobs in home page ()
+- [x] Manage refresh
+- [x] Manage refresh "toggle switch" (on/off button) 
+- [ ] Display job details
+- [ ] Requeue and delete jobs 
+- [ ] Make jobs filtrable by name
+- [ ] Make jobs filtrable by custom properties (~ get an array from config file)
+- [ ] Manage pagination ?!
+- [ ] Make it run as NodeJS command-line package :sunglasses:
+- [ ] Ship 1st release :pray: :rocket:
 
 
 # Story
