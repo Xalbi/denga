@@ -4,13 +4,16 @@ import { JobsComponent } from './jobs/jobs.component';
 import { JobsService } from './jobs.service';
 import { MaterialModule } from 'src/material.module';
 import { MomentModule } from 'ngx-moment';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
 	declarations: [JobsComponent],
 	imports: [
 		MomentModule,
 		CommonModule,
-		MaterialModule
+		MaterialModule,
+		FormsModule,
+		ReactiveFormsModule
 	],
 	entryComponents: [
 		JobsComponent
