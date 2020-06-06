@@ -1,6 +1,6 @@
 import { MongoClient, Db, MongoClientOptions, Collection } from "mongodb";
-import * as get_settings from '../get_settings';
-const settings = get_settings.json()
+const Config = require('conf');
+const settings = new Config();
 
 let db: Db;
 
@@ -11,5 +11,5 @@ export async function connect(url, options?: MongoClientOptions) {
 }
 
 export function JobsDB(): Collection {
-    return db.collection(settings.collection);
+    return db.collection(settings.get('collection'));
 }
