@@ -1,4 +1,3 @@
-
 .table-list {
     margin-left: 10%;
     margin-right: 10%;
@@ -9,11 +8,18 @@
     min-height: 25px;
 }
 
-.mat-chip.mat-standard-chip.mat-chip-selected.mat-primary.completed{
+.mat-chip.mat-standard-chip.mat-chip-selected.mat-primary.completed {
     background-color: green;
 }
 
-.mat-chip.mat-standard-chip.mat-chip-selected.mat-primary.repeat{
+.mat-chip.mat-standard-chip.mat-chip-selected.mat-primary.repeat {
     background-color: lightblue;
-    color: black
+    color: black;
+}
+
+.mat-form-field {
+    font-size: 14px;
+    margin-left: 10%;
+    margin-right: 10%;
+    width: 80%;
 }
