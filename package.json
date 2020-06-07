@@ -7,8 +7,8 @@
 		"denga": "./built/bin/cli.js"
 	},
 	"scripts": {
-		"build": "(rm -r built/) && tsc & (cd client && ng build)",
-		"build:prod": "(rm -r built/) && tsc & (cd client && ng build --prod)  && chmod +x ./built/bin/cli.js",
+		"build": "(rm -r built/) && tsc & (cd client && ng build) && chmod +x ./built/bin/cli.js",
+		"build:prod": "(rm -r built/) && tsc & (cd client && ng build --prod) && chmod +x ./built/bin/cli.js",
 		"all": "npm run build && npm start",
 		"start": "./built/bin/cli.js --db mongodb://127.0.0.1:27017/eqylink -c job -p 7019",
 		"monitor": "tsc --watch & nodemon ./built/app.js"
