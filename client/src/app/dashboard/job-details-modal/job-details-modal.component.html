@@ -1,0 +1,34 @@
+<h1 mat-dialog-title class="title">{{data.name}}</h1>
+<div mat-dialog-content>
+    <form class="form">
+        <mat-form-field *ngIf="data.lastRunAt" class="full-width">
+            <mat-label>Last run</mat-label>
+            <input matInput readonly [value]="data.lastRunAt | amTimeAgo">
+        </mat-form-field>
+
+        <mat-form-field *ngIf="data.nextRunAt" class="full-width">
+            <mat-label>Next run</mat-label>
+            <input matInput readonly [value]="data.nextRunAt | amTimeAgo">
+        </mat-form-field>
+
+        <mat-form-field *ngIf="data.lastFinishedAt" class="full-width">
+            <mat-label>Last finished</mat-label>
+            <input matInput readonly [value]="data.lastFinishedAt | amTimeAgo">
+        </mat-form-field>
+
+        <mat-form-field *ngIf="data.repeatInterval" class="full-width">
+            <mat-label>Repeat each</mat-label>
+            <input matInput readonly [value]="data.repeatInterval">
+        </mat-form-field>
+
+        <mat-form-field class="full-width">
+            <mat-label>Job data</mat-label>
+            <textarea matInput readonly class="custom-height">{{data.data | json}}</textarea>
+        </mat-form-field>
+
+    </form>
+</div>
+<div mat-dialog-actions>
+    <!-- <button mat-button (click)="onNoClick()">No Thanks</button> -->
+    <button mat-button [mat-dialog-close]="data._id" cdkFocusInitial>Ok</button>
+</div>
