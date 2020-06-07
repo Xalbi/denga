@@ -14,6 +14,9 @@ connect(settings.get('db'), {
 });
 
 const app = express();
+
+app.use('/', express.static(__dirname + '/public', { redirect: false }));
+
 useExpressServer(app, {
 	cors: true,
 	routePrefix: "/api",
@@ -23,10 +26,6 @@ useExpressServer(app, {
 	}
 })
 
-app.use('/', express.static(__dirname + '/public', { redirect: false }));
-app.get('*', (req, res) => {
-	return res.sendFile(__dirname + '/public/index.html');
-});
 
 module.exports = {
 	run: function () {
