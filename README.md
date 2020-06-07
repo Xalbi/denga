@@ -67,6 +67,7 @@ $ npm run build
 # Features
 
 * Monitor jobs
+* Display job details
 * Auto refresh with "toggle switch" (on/off) 
 * WIP :fire:
 
@@ -77,13 +78,13 @@ $ npm run build
 - [x] Display 100 jobs in home page
 - [x] Manage refresh
 - [x] Manage refresh "toggle switch" (on/off button) 
-- [ ] Display job details
+- [x] Display job details
+- [x] Make it run as NodeJS command-line package :sunglasses:
+- [x] Make jobs filtrable by name ( Prebuilt just front with Angular Material )
+- [x] Ship 1st release :pray: :rocket:
 - [ ] Requeue and delete jobs 
-- [ ] Make jobs filtrable by name
 - [ ] Make jobs filtrable by custom properties (~ get an array from config file)
 - [ ] Manage pagination ?!
-- [ ] Make it run as NodeJS command-line package :sunglasses:
-- [ ] Ship 1st release :pray: :rocket:
 
 
 # Story
