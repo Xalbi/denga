@@ -14,6 +14,7 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
 	declarations: [],
@@ -32,7 +33,8 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 		MatChipsModule,
 		MatIconModule,
 		MatInputModule,
-		MatSlideToggleModule
+		MatSlideToggleModule,
+		MatDialogModule
 	],
 	exports: [
 		BrowserAnimationsModule,
@@ -48,8 +50,8 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 		MatChipsModule,
 		MatIconModule,
 		MatInputModule,
-		MatSlideToggleModule
-
+		MatSlideToggleModule,
+		MatDialogModule
 	]
 })
 export class MaterialModule { }
