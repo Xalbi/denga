@@ -3,8 +3,11 @@ import { SelectionModel } from '@angular/cdk/collections';
 import { MatTableDataSource, MatTable } from '@angular/material/table';
 import { JobsService } from '../jobs.service';
 import { Subscription, interval } from 'rxjs';
+import { MatDialog } from '@angular/material/dialog';
+import { JobDetailsModalComponent } from '../job-details-modal/job-details-modal.component';
 
 export interface Job {
+	_id: string,
 	name: string,
 	data: any,
 	type: string,
@@ -53,6 +56,7 @@ export class JobsComponent implements OnInit {
 	refreshState = true
 	constructor(
 		private jobsService: JobsService,
+		public jobDetails: MatDialog
 	) { }
 
 	async ngOnInit() {
@@ -77,6 +81,18 @@ export class JobsComponent implements OnInit {
 			job.states = this.computeJobStates(job)
 		})
 	}
+
+	openJobDetails(elem): void {		
+		const dialogRef = this.jobDetails.open(JobDetailsModalComponent, {
+			width: '50%',
+			data: elem
+		});
+
+		dialogRef.afterClosed().subscribe(result => {
+			console.log('The jobDetails was closed', result);
+		});
+	}
+
 
 	applyFilter(event: Event) {
 		const filterValue = (event.target as HTMLInputElement).value;
@@ -110,7 +126,7 @@ export class JobsComponent implements OnInit {
 		let nextRunAt = new Date(job.nextRunAt).getTime()
 		failedAt = isNaN(failedAt) ? 0 : failedAt
 		lastFinishedAt = isNaN(lastFinishedAt) ? 0 : lastFinishedAt
-		
+
 		let failed = (lastFinishedAt && failedAt) && (lastFinishedAt == failedAt)
 		let running = lastRunAt && (lastRunAt > lastFinishedAt)
 		let completed = lastFinishedAt && (lastFinishedAt > failedAt)
