@@ -5,9 +5,10 @@ import { JobsService } from './jobs.service';
 import { MaterialModule } from 'src/material.module';
 import { MomentModule } from 'ngx-moment';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { JobDetailsModalComponent } from './job-details-modal/job-details-modal.component';
 
 @NgModule({
-	declarations: [JobsComponent],
+	declarations: [JobsComponent, JobDetailsModalComponent],
 	imports: [
 		MomentModule,
 		CommonModule,
