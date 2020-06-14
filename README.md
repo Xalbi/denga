@@ -67,7 +67,8 @@ $ npm run build
 # Features
 
 * Monitor jobs
-* Display job details
+* Display jobs details
+* Requeue and delete jobs 
 * Auto refresh with "toggle switch" (on/off) 
 * WIP :fire:
 
@@ -82,7 +83,7 @@ $ npm run build
 - [x] Make it run as NodeJS command-line package :sunglasses:
 - [x] Make jobs filtrable by name ( Prebuilt just front with Angular Material )
 - [x] Ship 1st release :pray: :rocket:
-- [ ] Requeue and delete jobs 
+- [x] Requeue and delete jobs 
 - [ ] Make jobs filtrable by custom properties (~ get an array from config file)
 - [ ] Manage pagination ?!
 
