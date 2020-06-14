@@ -1,10 +1,13 @@
-import * as get_settings from '../get_settings';
-const settings = get_settings.json()
+
+const Config = require('conf');
+const settings = new Config();
+
+
 const Agenda = require('agenda');
 const connectionOpts = {
     db: {
-        address: settings.mongodb.url,
-        collection: 'agenda_jobs',
+        address: settings.get('db'),
+        collection: settings.get('collection'),
         options: {
             useUnifiedTopology: true,
             autoReconnect: false,
@@ -16,10 +19,7 @@ const connectionOpts = {
 
 const agenda = new Agenda(connectionOpts);
 agenda.on('ready', function() {
-
-if (settings.agenda.on) {
-    console.log('agenda is up!');
+    console.log('Agenda is up!');
     agenda.start();
-}
 })
 module.exports = agenda;
