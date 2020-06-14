@@ -20,6 +20,11 @@
             <mat-label>Repeat each</mat-label>
             <input matInput readonly [value]="data.repeatInterval">
         </mat-form-field>
+      
+        <mat-form-field *ngIf="data.states.failed && data.failReason" class="full-width">
+            <mat-label>Fail reason</mat-label>
+            <input [matTooltip]="data.failReason" matInput readonly [value]="data.failReason">
+        </mat-form-field>
 
         <mat-form-field class="full-width">
             <mat-label>Job data</mat-label>
@@ -29,6 +34,7 @@
     </form>
 </div>
 <div mat-dialog-actions>
-    <!-- <button mat-button (click)="onNoClick()">No Thanks</button> -->
-    <button mat-button [mat-dialog-close]="data._id" cdkFocusInitial>Ok</button>
+    <button mat-button (click)="onAction('delete')">Delete</button>
+    <button mat-button (click)="onAction('requeue')">Requeue</button>
+    <button mat-button (click)="onAction('cancel')" cdkFocusInitial>Ok</button>
 </div>
