@@ -82,17 +82,34 @@ export class JobsComponent implements OnInit {
 		})
 	}
 
-	openJobDetails(elem): void {		
+	openJobDetails(elem): void {
 		const dialogRef = this.jobDetails.open(JobDetailsModalComponent, {
-			width: '50%',
+			width: '30%',
 			data: elem
 		});
 
-		dialogRef.afterClosed().subscribe(result => {
-			console.log('The jobDetails was closed', result);
+		dialogRef.afterClosed().subscribe(async result => {
+			if (result && result.action) {
+				await this.executeJobAction(result)
+			}
 		});
 	}
 
+	async executeJobAction(actionParam) {
+		switch (actionParam.action) {
+			case 'requeue': {
+				await this.jobsService.requeueJobs(actionParam).toPromise()
+				break;
+			}
+			case 'delete': {
+				await this.jobsService.removeJobs(actionParam).toPromise()
+				break;
+			}
+			default: {
+				break;
+			}
+		}
+	}
 
 	applyFilter(event: Event) {
 		const filterValue = (event.target as HTMLInputElement).value;
