@@ -2,6 +2,8 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Job } from '../jobs/jobs.component';
 
+export type Action = 'requeue' | 'delete' | 'cancel'
+
 @Component({
 	selector: 'app-job-details-modal',
 	templateUrl: './job-details-modal.component.html',
@@ -17,10 +19,14 @@ export class JobDetailsModalComponent implements OnInit {
 	
 	async ngOnInit() {
 		console.log(this.data);
+		
 	}
 	
-	onNoClick(): void {
-		this.dialogRef.close();
+	onAction(action: Action) {
+		this.dialogRef.close({
+			action: action,
+			ids: [this.data._id]
+		});
 	}
-
+	
 }
