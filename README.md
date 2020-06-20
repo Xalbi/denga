@@ -83,8 +83,11 @@ $ npm run build
 - [x] Make it run as NodeJS command-line package :sunglasses:
 - [x] Make jobs filtrable by name ( Prebuilt just front with Angular Material )
 - [x] Ship 1st release :pray: :rocket:
-- [x] Requeue and delete jobs 
+- [x] Requeue and delete jobs
+- [x] Make sure to send the user filter in every query
+- [ ] Keep the jobs filtred after a requeue or a delete
 - [ ] Make jobs filtrable by custom properties (~ get an array from config file)
+- [ ] Display some stats
 - [ ] Manage pagination ?!
 
 
