@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { SelectionModel } from '@angular/cdk/collections';
 import { MatTableDataSource, MatTable } from '@angular/material/table';
-import { JobsService } from '../jobs.service';
+import { JobsService, Filter } from '../jobs.service';
 import { Subscription, interval } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { JobDetailsModalComponent } from '../job-details-modal/job-details-modal.component';
@@ -41,6 +41,11 @@ export interface JobStates {
 })
 export class JobsComponent implements OnInit {
 	JOB_DATA: Job[] = []
+	filter: Filter = {
+		search_string: '',
+		states: []
+	};
+	refreshInterval = 5000;
 	dataSource
 	selection
 	displayedColumns: string[] = [
@@ -61,8 +66,7 @@ export class JobsComponent implements OnInit {
 
 	async ngOnInit() {
 		await this.init()
-
-		this.refresh = interval(2000).subscribe(async (val) => {
+		this.refresh = interval(this.refreshInterval).subscribe(async (val) => {
 			if (this.refreshState) {
 				try {
 					await this.init()
@@ -73,10 +77,9 @@ export class JobsComponent implements OnInit {
 	}
 
 	async init() {
-		this.JOB_DATA = await this.jobsService.getJobs().toPromise()
+		this.JOB_DATA = await this.jobsService.getJobs(this.filter).toPromise()
 		this.dataSource = new MatTableDataSource<Job>(this.JOB_DATA);
 		this.selection = new SelectionModel<Job>(true, []);
-
 		this.JOB_DATA.forEach(job => {
 			job.states = this.computeJobStates(job)
 		})
@@ -112,8 +115,8 @@ export class JobsComponent implements OnInit {
 	}
 
 	applyFilter(event: Event) {
-		const filterValue = (event.target as HTMLInputElement).value;
-		this.dataSource.filter = filterValue.trim().toLowerCase();
+		this.filter.search_string = (event.target as HTMLInputElement).value;
+		this.dataSource.filter = this.filter.search_string.trim().toLowerCase();
 	}
 
 	isAllSelected() {
