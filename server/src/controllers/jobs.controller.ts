@@ -1,5 +1,6 @@
 import { JsonController, Get, Post, Body} from "routing-controllers";
 import { JobsLib } from "../libs/jobs.lib";
+import { Filter } from "../models/filter";
  
 @JsonController('/jobs')
 
@@ -12,9 +13,9 @@ export class CompanyController {
     after a delete or q requeue we must get the new list filtred
      */
 
-    @Get("/all")
-    async getAll() {
-        return await this.jobsLib.getAll()
+    @Post("/all")
+    async getAll(@Body() filter: Filter) {
+        return await this.jobsLib.getAll(filter)
     }
    
     @Post("/remove")
