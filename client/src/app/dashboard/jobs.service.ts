@@ -8,8 +8,8 @@ export class JobsService {
 	url = this.host + '/api/jobs/';
 	constructor(private http: HttpClient) { }
 	
-	getJobs():Observable<any> {
-		return this.http.get(this.url + 'all')
+	getJobs(filter: Filter):Observable<any> {
+		return this.http.post(this.url + 'all', filter)
 	}
 	
 	removeJobs(params):Observable<any> {
@@ -21,3 +21,8 @@ export class JobsService {
 	}
 
 }
+
+export class Filter {
+	search_string: string;
+	states:  string[];
+};
