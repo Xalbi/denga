@@ -15,6 +15,7 @@ const cli = meow(`
 	  --collection, -c	(optional) Mongo collection, same as Agenda collection name, default agendaJobs
 	  --limit, -l	(optional) max number of jobs displayed, default 100
 	  --title, -t	(optional) page title, default Denga
+	  --keys, -k	(optional) (multiple) keys to include in search
 
 	Examples
 	  $ denga -p 3010 -c jobs -t myDashBoard --limit=300 -d mongodb://127.0.0.1:27017/denga 
@@ -46,6 +47,12 @@ const cli = meow(`
 			type: 'string',
 			default: 'Denga',
 			alias: 't'
+		},
+		keys: {
+			type: 'string',
+			alias: 'k',
+			default: [],
+			isMultiple: true
 		}
 	}
 });
