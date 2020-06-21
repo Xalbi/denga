@@ -1,5 +1,5 @@
 # Denga
-:warning: you can install the project but many features still under development :construction:
+:warning: you can install and use the project but some features still under development :construction:
 
 A modern [Agenda](https://github.com/agenda/agenda) Dashboard made with :balloon: Angular :tada:
 
