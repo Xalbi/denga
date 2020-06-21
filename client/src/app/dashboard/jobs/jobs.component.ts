@@ -114,9 +114,9 @@ export class JobsComponent implements OnInit {
 		}
 	}
 
-	applyFilter(event: Event) {
+	async applyFilter(event: Event) {
 		this.filter.search_string = (event.target as HTMLInputElement).value;
-		this.dataSource.filter = this.filter.search_string.trim().toLowerCase();
+		await this.init()
 	}
 
 	isAllSelected() {
