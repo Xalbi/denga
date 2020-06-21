@@ -31,7 +31,7 @@ $ denga --db mongodb://127.0.0.1:27017/denga
 
 `--title, -t`:	(optional) page title, default Denga
 
-`--keys, -k`:	(optional) (multiple) keys to include in search
+`--keys, -k`:	(optional) (multiple) keys to include in search, use (.) for nested object
 
 
 # Example
@@ -39,6 +39,49 @@ $ denga --db mongodb://127.0.0.1:27017/denga
 $ denga -p 3010 -c jobs -t myDashBoard --limit=300 -d mongodb://127.0.0.1:27017/denga -k id -k params.category
 ```
 
+Consider the following jobs
+
+```json
+{
+    "name" : "jobTypeOne",
+    "data" : {
+        "id" : "sports",
+        "params" : {
+            "source_config" : {
+                "from" : {
+                    "amount" : 40,
+                    "unit" : "minutes"
+                },
+                "query" : "foot OR soccer OR football"
+            },
+            "categories" : [ 
+                "sports"
+            ],
+            "tags" : [ 
+                "football"
+            ]
+        }
+    },
+    ...
+}
+
+{
+    "name" : "jobTypeTwo",
+    "data" : {
+        "id" : "football",
+        "params" : {
+            "category" : "sports"
+        }
+    },
+    ...
+}
+
+```
+
+* If you type in the search bar the keyword "sport" both jobs will be returned
+* If you type in the search bar the keyword "foot" only jobTypeTwo will be returned
+
+If you want to be able to get both jobs by the keyword "foot", you need to add this key "params.tags" 
 
 
 
@@ -73,7 +116,7 @@ $ npm run build
 
 * Monitor jobs
 * Display jobs details
-* Filter jobs (you can set your own search keys)
+* Filter jobs by name and your own search keys
 * Requeue and delete jobs 
 * Auto refresh with "toggle switch" (on/off) 
 * WIP :fire:
