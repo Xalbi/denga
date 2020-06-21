@@ -31,11 +31,16 @@ $ denga --db mongodb://127.0.0.1:27017/denga
 
 `--title, -t`:	(optional) page title, default Denga
 
+`--keys, -k`:	(optional) (multiple) keys to include in search
+
 
 # Example
 ```console
-$ denga -p 3010 -c jobs -t myDashBoard --limit=300 -d mongodb://127.0.0.1:27017/denga
+$ denga -p 3010 -c jobs -t myDashBoard --limit=300 -d mongodb://127.0.0.1:27017/denga -k id -k params.category
 ```
+
+
+
 
 # Scripts
 In your dev environment, you can kick off the project (server and client) under nodemon with 
@@ -68,6 +73,7 @@ $ npm run build
 
 * Monitor jobs
 * Display jobs details
+* Filter jobs (you can set your own search keys)
 * Requeue and delete jobs 
 * Auto refresh with "toggle switch" (on/off) 
 * WIP :fire:
@@ -85,8 +91,8 @@ $ npm run build
 - [x] Ship 1st release :pray: :rocket:
 - [x] Requeue and delete jobs
 - [x] Make sure to send the user filter in every query
+- [x] Make jobs filtrable by custom properties (~ get an array from config file)
 - [ ] Keep the jobs filtred after a requeue or a delete
-- [ ] Make jobs filtrable by custom properties (~ get an array from config file)
 - [ ] Display some stats
 - [ ] Manage pagination ?!
 
