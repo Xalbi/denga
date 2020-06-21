@@ -3,22 +3,40 @@ import { ObjectId } from 'mongodb';
 import { Filter } from '../models/filter';
 const agenda = require('./agenda.lib');
 
-
 const Config = require('conf');
 const settings = new Config();
 export class JobsLib {
 
 	async getAll(filter: Filter) {
 		let dbFilter: any = {};
+
 		if (filter.search_string) {
+			let dbKeysFilter: any = {};
+			let keys = settings.get('keys')
+			let preparedKeys = keys.map(k => 'data.' + k.trim())
+
 			dbFilter = { $and: [] }
-			dbFilter.$and.push({
-				name:
-				{
+			dbKeysFilter = {
+				$or: [
+					{
+						name:
+						{
+							$regex: filter.search_string,
+							$options: 'i'
+						}
+					}
+				]
+			}
+
+			for (const k of preparedKeys) {
+				let cond = {}
+				cond[k] = {
 					$regex: filter.search_string,
 					$options: 'i'
-				}
-			})
+				}				
+				dbKeysFilter.$or.push(cond)
+			}			
+			dbFilter.$and.push(dbKeysFilter)
 		}
 
 		try {
