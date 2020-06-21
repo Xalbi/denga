@@ -34,9 +34,19 @@ $ denga --db mongodb://127.0.0.1:27017/denga
 `--keys, -k`:	(optional) (multiple) keys to include in search, use (.) for nested object
 
 
-# Example
+# Examples
+
+Example Usage 1
+
 ```console
-$ denga -p 3010 -c jobs -t myDashBoard --limit=300 -d mongodb://127.0.0.1:27017/denga -k id -k params.category
+$ denga -p 3010 -c jobs -t myDashBoard --limit=300 -d mongodb://127.0.0.1:27017/denga
+```
+
+Example Usage 2
+
+
+```console
+$ denga -p 3010 -c jobs --limit=300 -d mongodb://127.0.0.1:27017/denga -k id -k params.category
 ```
 
 Consider the following jobs
@@ -77,6 +87,7 @@ Consider the following jobs
 }
 
 ```
+
 
 * If you type in the search bar the keyword "sport" both jobs will be returned
 * If you type in the search bar the keyword "foot" only jobTypeTwo will be returned
