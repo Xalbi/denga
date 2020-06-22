@@ -2,8 +2,6 @@
 
 const meow = require('meow');
 const Config = require('conf');
-const settings = new Config();
-const myapp = require('../server/app');
 
 const cli = meow(`
 	Usage
@@ -15,7 +13,7 @@ const cli = meow(`
 	  --collection, -c	(optional) Mongo collection, same as Agenda collection name, default agendaJobs
 	  --limit, -l	(optional) max number of jobs displayed, default 100
 	  --title, -t	(optional) page title, default Denga
-	  --keys, -k	(optional) (multiple) keys to include in search
+	  --keys, -k	(optional) (multiple) keys to include in search, you can use dot-notation (.) in a key to access nested properties
 
 	Examples
 	  $ denga -p 3010 -c jobs -t myDashBoard --limit=300 -d mongodb://127.0.0.1:27017/denga 
@@ -57,5 +55,12 @@ const cli = meow(`
 	}
 });
 
+let configName = 'denga-' + cli.flags.port
+process.env['NODEJS_DENGA_CONFIGNAME'] = configName;
+const settings = new Config({
+	configName: configName
+});
 settings.set(cli.flags);
-myapp.run()
+
+const myapp = require('../server/app');
+myapp.run(cli.flags)
