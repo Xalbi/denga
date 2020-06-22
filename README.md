@@ -31,7 +31,8 @@ $ denga --db mongodb://127.0.0.1:27017/denga
 
 `--title, -t`:	(optional) page title, default Denga
 
-`--keys, -k`:	(optional) (multiple) keys to include in search, use (.) for nested object
+`--keys, -k`:	(optional) (multiple) keys to include in search, you can use dot-notation (.) in a key to access nested properties
+
 
 
 # Examples
