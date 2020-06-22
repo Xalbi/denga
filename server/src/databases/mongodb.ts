@@ -1,6 +1,8 @@
 import { MongoClient, Db, MongoClientOptions, Collection } from "mongodb";
 const Config = require('conf');
-const settings = new Config();
+const settings = new Config({
+    configName: process.env.NODEJS_DENGA_CONFIGNAME
+});
 
 let db: Db;
 

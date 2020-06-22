@@ -4,7 +4,10 @@ import { Filter } from '../models/filter';
 const agenda = require('./agenda.lib');
 
 const Config = require('conf');
-const settings = new Config();
+const settings = new Config({
+    configName: process.env.NODEJS_DENGA_CONFIGNAME
+});
+
 export class JobsLib {
 
 	async getAll(filter: Filter) {

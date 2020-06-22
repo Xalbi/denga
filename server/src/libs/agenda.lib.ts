@@ -1,7 +1,8 @@
 
 const Config = require('conf');
-const settings = new Config();
-
+const settings = new Config({
+    configName: process.env.NODEJS_DENGA_CONFIGNAME
+});
 
 const Agenda = require('agenda');
 const connectionOpts = {
