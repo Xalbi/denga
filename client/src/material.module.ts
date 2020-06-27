@@ -15,7 +15,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatDialogModule } from '@angular/material/dialog';
-
+import {MatToolbarModule} from '@angular/material/toolbar';
 @NgModule({
 	declarations: [],
 	imports: [
@@ -34,7 +34,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 		MatIconModule,
 		MatInputModule,
 		MatSlideToggleModule,
-		MatDialogModule
+		MatDialogModule,
+		MatToolbarModule
 	],
 	exports: [
 		BrowserAnimationsModule,
@@ -51,7 +52,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 		MatIconModule,
 		MatInputModule,
 		MatSlideToggleModule,
-		MatDialogModule
+		MatDialogModule,
+		MatToolbarModule
 	]
 })
 export class MaterialModule { }
