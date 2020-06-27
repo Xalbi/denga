@@ -5,7 +5,7 @@ const agenda = require('./agenda.lib');
 
 const Config = require('conf');
 const settings = new Config({
-    configName: process.env.NODEJS_DENGA_CONFIGNAME
+	configName: process.env.NODEJS_DENGA_CONFIGNAME
 });
 
 export class JobsLib {
@@ -13,33 +13,38 @@ export class JobsLib {
 	async getAll(filter: Filter) {
 		let dbFilter: any = {};
 
-		if (filter.search_string) {
-			let dbKeysFilter: any = {};
-			let keys = settings.get('keys')
-			let preparedKeys = keys.map(k => 'data.' + k.trim())
-
+		if (filter.job_names.length || filter.search_string) {
 			dbFilter = { $and: [] }
-			dbKeysFilter = {
-				$or: [
+
+			if (filter.job_names.length) {
+				dbFilter.$and.push({
+					name:
 					{
-						name:
-						{
+						$in: filter.job_names,
+					}
+				})
+			}
+			if (filter.search_string) {
+				let dbKeysFilter: any = {};
+				let keys = settings.get('keys')
+				let preparedKeys = keys.map(k => 'data.' + k.trim())
+				dbKeysFilter = { $or: [] }
+				if (preparedKeys.length) {
+					for (const k of preparedKeys) {
+						let cond = {}
+						cond[k] = {
 							$regex: filter.search_string,
 							$options: 'i'
 						}
+						dbKeysFilter.$or.push(cond)
 					}
-				]
+					dbFilter.$and.push(dbKeysFilter)
+				}
 			}
 
-			for (const k of preparedKeys) {
-				let cond = {}
-				cond[k] = {
-					$regex: filter.search_string,
-					$options: 'i'
-				}				
-				dbKeysFilter.$or.push(cond)
-			}			
-			dbFilter.$and.push(dbKeysFilter)
+			if (!dbFilter.$and.length) {
+				dbFilter = {}
+			}
 		}
 
 		try {
