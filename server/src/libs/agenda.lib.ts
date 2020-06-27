@@ -21,6 +21,7 @@ const connectionOpts = {
 const agenda = new Agenda(connectionOpts);
 agenda.on('ready', function() {
     console.log('Agenda is up!');
+    console.log('Press Ctrl+C to quit.');
     agenda.start();
 })
 module.exports = agenda;
