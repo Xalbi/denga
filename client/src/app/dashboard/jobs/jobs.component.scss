@@ -23,3 +23,37 @@
     margin-right: 10%;
     width: 80%;
 }
+
+.head {
+    font-size: 14px;
+    margin-left: 10%;
+    margin-right: 10%;
+    width: 80%;
+}
+
+.space {
+    flex: 1 1 auto;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.d-toggle{
+    height: 40px;
+}
+
+.d-filter {
+    margin-left: 0px;
+    width: 20%;
+}
+
+.d-toolbar {
+    display: flex;
+}
