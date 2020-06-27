@@ -1,12 +1,24 @@
 # Denga
+**Note**: You must be using node version 10.15.x or greater to use denga.
+
 :warning: you can install and use the project but some features still under development :construction:
 
 A modern [Agenda](https://github.com/agenda/agenda) Dashboard made with :balloon: Angular :tada:
 
+
+# Features
+
+* Monitor jobs
+* Display jobs details
+* Filter jobs by name and your own search keys
+* Requeue and delete jobs 
+* Auto refresh with "toggle switch" (on/off) 
+* ... WIP :fire:
+
 # Install
 
 ```console
-$ npm install denga
+$ npm install denga --global
 ```
 
 # Usage
@@ -123,17 +135,6 @@ $ npm run build
 * The Angular CLI requires a minimum Node.js version of either v10.13 or v12.0.
 
 
-
-# Features
-
-* Monitor jobs
-* Display jobs details
-* Filter jobs by name and your own search keys
-* Requeue and delete jobs 
-* Auto refresh with "toggle switch" (on/off) 
-* WIP :fire:
-
-
 # TODO
 
 - [x] Setup config system (config file and/or command line arguments )
@@ -148,6 +149,7 @@ $ npm run build
 - [x] Make sure to send the user filter in every query
 - [x] Make jobs filtrable by custom properties (~ get an array from config file)
 - [ ] Keep the jobs filtred after a requeue or a delete
+- [ ] Create new job from UI
 - [ ] Display some stats
 - [ ] Manage pagination ?!
 
