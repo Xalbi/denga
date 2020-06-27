@@ -43,9 +43,14 @@ export class JobsComponent implements OnInit {
 	JOB_DATA: Job[] = []
 	filter: Filter = {
 		search_string: '',
-		states: []
+		states: [],
+		job_names: []
 	};
-	refreshInterval = 5000;
+
+	jobNames
+	selectedNames
+
+	refreshInterval = 1000;
 	dataSource
 	selection
 	displayedColumns: string[] = [
@@ -65,6 +70,12 @@ export class JobsComponent implements OnInit {
 	) { }
 
 	async ngOnInit() {
+		this.jobNames = [
+			"sendmail",
+			"exportMkt",
+			"MarketingAutomationTask"
+		]
+
 		await this.init()
 		this.refresh = interval(this.refreshInterval).subscribe(async (val) => {
 			if (this.refreshState) {
@@ -116,6 +127,11 @@ export class JobsComponent implements OnInit {
 
 	async applyFilter(event: Event) {
 		this.filter.search_string = (event.target as HTMLInputElement).value;
+		await this.init()
+	}
+
+	async filterChanged(filter, model) {	
+		this.filter[filter] = this[model];
 		await this.init()
 	}
 
