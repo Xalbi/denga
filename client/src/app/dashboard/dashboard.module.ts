@@ -8,6 +8,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { JobDetailsModalComponent } from './job-details-modal/job-details-modal.component';
 
 import {MatGridListModule} from '@angular/material/grid-list';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 import { StatsOverviewComponent } from './stats-overview/stats-overview.component';
 import { StatsOverviewService } from './stats-overview.service';
@@ -20,7 +21,8 @@ import { StatsOverviewService } from './stats-overview.service';
 		MaterialModule,
 		FormsModule,
 		ReactiveFormsModule,
-		MatGridListModule
+		MatGridListModule,
+		MatProgressSpinnerModule
 	],
 	entryComponents: [
 		JobsComponent

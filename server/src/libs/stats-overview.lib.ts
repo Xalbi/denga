@@ -137,8 +137,11 @@ export class StatsOverviewLib {
                     }      
                 }
         ]).toArray();
-            return res[0]
-        } catch (error) {
+
+        if (res && res.length) return res[0]
+        return []
+        
+    } catch (error) {
             throw error;
         }
     }

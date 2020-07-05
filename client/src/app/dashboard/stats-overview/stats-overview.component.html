@@ -1,5 +1,8 @@
 <div style="margin: 10px;" class="gridRow">
-    <div class="col-12 col-s-6" >
+    <div *ngIf = "loading">
+        <mat-spinner></mat-spinner>
+    </div>
+    <div  *ngIf = "!loading && totalStats.data.length"  class="col-12 col-s-6" >
         <div style="margin: 5px">
             <mat-table [dataSource]="totalStats.data" class="mat-elevation-z8">
                 <!-- State Column -->
@@ -11,7 +14,8 @@
                 <!-- Number of jobs Column -->
                 <ng-container matColumnDef="name">
                     <mat-header-cell style="justify-content: flex-end;" *matHeaderCellDef> # </mat-header-cell>
-                    <mat-cell style="justify-content: flex-end" *matCellDef="let element"> {{element.number}}
+                    <mat-cell style="justify-content: flex-end" *matCellDef="let element">
+                        <mat-chip [ngStyle]="jobTypesColors[element.state]">{{element.number}}</mat-chip>
                     </mat-cell>
                 </ng-container>
 
@@ -20,8 +24,7 @@
             </mat-table>
         </div>
     </div>
-
-    <div class="col-12 col-s-6">
+    <div  *ngIf = "!loading && totalStats.data.length"  class="col-12 col-s-6">
         <div style="margin: 5px">
             <mat-table  [dataSource]="jobSelected.data"
                 class="mat-elevation-z8">
@@ -45,7 +48,8 @@
                 <!-- Number of jobs Column -->
                 <ng-container matColumnDef="name">
                     <mat-header-cell style="justify-content: flex-end;" *matHeaderCellDef> # </mat-header-cell>
-                    <mat-cell style="justify-content: flex-end" *matCellDef="let element"> {{element.number}}
+                    <mat-cell style="justify-content: flex-end" *matCellDef="let element"> 
+                        <mat-chip [ngStyle]="jobTypesColors[element.state]">{{element.number}}</mat-chip>
                     </mat-cell>
                 </ng-container>
 
