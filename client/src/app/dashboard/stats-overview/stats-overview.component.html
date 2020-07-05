@@ -1,0 +1,58 @@
+<div style="margin: 10px;" class="gridRow">
+    <div class="col-12 col-s-6" >
+        <div style="margin: 5px">
+            <mat-table [dataSource]="totalStats.data" class="mat-elevation-z8">
+                <!-- State Column -->
+                <ng-container matColumnDef="position">
+                    <mat-header-cell *matHeaderCellDef> {{totalStats.jobName}}</mat-header-cell>
+                    <mat-cell *matCellDef="let element"> {{element.state}} </mat-cell>
+                </ng-container>
+
+                <!-- Number of jobs Column -->
+                <ng-container matColumnDef="name">
+                    <mat-header-cell style="justify-content: flex-end;" *matHeaderCellDef> # </mat-header-cell>
+                    <mat-cell style="justify-content: flex-end" *matCellDef="let element"> {{element.number}}
+                    </mat-cell>
+                </ng-container>
+
+                <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+            </mat-table>
+        </div>
+    </div>
+
+    <div class="col-12 col-s-6">
+        <div style="margin: 5px">
+            <mat-table  [dataSource]="jobSelected.data"
+                class="mat-elevation-z8">
+                <!-- State Column -->
+                <ng-container matColumnDef="position">
+
+                    <mat-header-cell *matHeaderCellDef>
+                        <div style="width: 100%; margin-top: 5px;">
+                            <mat-form-field style="display: block">
+                                <mat-label>Job Type</mat-label>
+                                <mat-select [(value)]="jobTypeSelected" (selectionChange)="getStatsForJob($event.value)">
+                                    <mat-option *ngFor="let jobType of jobsTypes" [value]="jobType">
+                                        {{jobType}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                    </mat-header-cell>
+                    <mat-cell *matCellDef="let element"> {{element.state}} </mat-cell>
+                </ng-container>
+                <!-- Number of jobs Column -->
+                <ng-container matColumnDef="name">
+                    <mat-header-cell style="justify-content: flex-end;" *matHeaderCellDef> # </mat-header-cell>
+                    <mat-cell style="justify-content: flex-end" *matCellDef="let element"> {{element.number}}
+                    </mat-cell>
+                </ng-container>
+
+                <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+            </mat-table>
+        </div>
+
+    </div>
+</div>
