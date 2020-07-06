@@ -1,9 +1,13 @@
-<div style="margin: 10px;" class="gridRow">
-    <div *ngIf = "loading">
-        <mat-spinner></mat-spinner>
+<div class="gridRowInside">
+    <div class="spinner" *ngIf="loading">
+        <mat-spinner
+            diameter='30'
+            [color]="'accent'"
+            [mode]="'indeterminate'"
+        ></mat-spinner>
     </div>
-    <div  *ngIf = "!loading && totalStats.data.length"  class="col-12 col-s-6" >
-        <div style="margin: 5px">
+    <div *ngIf = "!loading && totalStats.data.length"  class="col-12 col-s-6 total-stat-bloc">
+        <div>
             <mat-table [dataSource]="totalStats.data" class="mat-elevation-z8">
                 <!-- State Column -->
                 <ng-container matColumnDef="position">
@@ -25,7 +29,7 @@
         </div>
     </div>
     <div  *ngIf = "!loading && totalStats.data.length"  class="col-12 col-s-6">
-        <div style="margin: 5px">
+        <div>
             <mat-table  [dataSource]="jobSelected.data"
                 class="mat-elevation-z8">
                 <!-- State Column -->
@@ -34,7 +38,7 @@
                     <mat-header-cell *matHeaderCellDef>
                         <div style="width: 100%; margin-top: 5px;">
                             <mat-form-field style="display: block">
-                                <mat-label>Job Type</mat-label>
+                                <mat-label>Job Name</mat-label>
                                 <mat-select [(value)]="jobTypeSelected" (selectionChange)="getStatsForJob($event.value)">
                                     <mat-option *ngFor="let jobType of jobsTypes" [value]="jobType">
                                         {{jobType}}
