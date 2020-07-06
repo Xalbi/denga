@@ -7,20 +7,29 @@ import { MomentModule } from 'ngx-moment';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { JobDetailsModalComponent } from './job-details-modal/job-details-modal.component';
 
+import {MatGridListModule} from '@angular/material/grid-list';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+
+import { StatsOverviewComponent } from './stats-overview/stats-overview.component';
+import { StatsOverviewService } from './stats-overview.service';
+
 @NgModule({
-	declarations: [JobsComponent, JobDetailsModalComponent],
+	declarations: [JobsComponent, JobDetailsModalComponent, StatsOverviewComponent],
 	imports: [
 		MomentModule,
 		CommonModule,
 		MaterialModule,
 		FormsModule,
-		ReactiveFormsModule
+		ReactiveFormsModule,
+		MatGridListModule,
+		MatProgressSpinnerModule
 	],
 	entryComponents: [
 		JobsComponent
 	],
 	providers: [
-		JobsService
+		JobsService,
+		StatsOverviewService
 	],
 	exports: [
 		JobsComponent
