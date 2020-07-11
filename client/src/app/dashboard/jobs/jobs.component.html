@@ -1,4 +1,7 @@
 <div class="container">
+	<a href="https://github.com/Xalbi/denga" target="_blank" title="help">
+		<mat-icon class="help">help_outline</mat-icon>
+	</a>
 	<div class="head">
 		<mat-toolbar-row class="d-toolbar">
 			<mat-form-field class="d-filter" *ngIf="jobNames">
@@ -9,6 +12,7 @@
 					</mat-option>
 				</mat-select>
 			</mat-form-field>
+			<img alt="denga" src="../../../assets/img/denga.png" class="logo">
 			<span class="space"></span>
 			<mat-slide-toggle class="d-toggle" [(ngModel)]="refreshState"> auto-refresh is
 				{{refreshState ? 'ON' : 'OFF'}}
@@ -28,7 +32,7 @@
 			</div>
 		</div>
 		<div class="col-10 col-s-12">
-			<div>
+			<div class="table-container">
 				<table *ngIf="JOB_DATA.length" mat-table [dataSource]="dataSource" class="mat-elevation-z8 table-list">
 					<ng-container matColumnDef="select">
 						<th mat-header-cell *matHeaderCellDef>
