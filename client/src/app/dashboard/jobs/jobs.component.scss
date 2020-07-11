@@ -1,3 +1,20 @@
+.help{
+    position: fixed;
+    top: 5px;
+    right: 5px;
+    background-color: unset;
+    width: min-content;
+    height: min-content;
+}
+
+.logo{
+    height: 4rem;
+}
+
+.logo-container{
+    min-width: max-content;
+}
+
 .table-list {
     width: 100%;
 }
@@ -48,9 +65,15 @@
 
 .d-filter {
     margin-left: 0px;
+    margin-right: 20%;
     width: 20%;
 }
 
 .d-toolbar {
     display: flex;
+}
+
+.table-container {
+    max-height: 85vh;
+    overflow: auto;
 }
