@@ -12,6 +12,7 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 import { StatsOverviewComponent } from './stats-overview/stats-overview.component';
 import { StatsOverviewService } from './stats-overview.service';
+import { ConfigService } from './config.service';
 
 @NgModule({
 	declarations: [JobsComponent, JobDetailsModalComponent, StatsOverviewComponent],
@@ -29,6 +30,7 @@ import { StatsOverviewService } from './stats-overview.service';
 	],
 	providers: [
 		JobsService,
+		ConfigService,
 		StatsOverviewService
 	],
 	exports: [
