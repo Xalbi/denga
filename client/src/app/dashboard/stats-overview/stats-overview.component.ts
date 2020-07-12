@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { StatsOverviewService } from '../stats-overview.service';
 import { Subscription, interval } from 'rxjs';
 
@@ -11,6 +11,7 @@ export class StatsOverviewComponent implements OnInit {
 
   @Input() refreshState = true;
   @Input() refreshInterval = 3000;
+  @Output() jobNames = new EventEmitter<string[]>();
 
   refresh: Subscription;
 
@@ -59,6 +60,8 @@ export class StatsOverviewComponent implements OnInit {
         this.jobsTypes = this.jobsTypes ? this.jobsTypes: res.jobTypes
           .map(jobType => jobType.jobName)
           .sort()
+
+        this.jobNames.emit(this.jobsTypes)
 
         let initJob = this.jobTypesStats[0]
         this.jobTypeSelected = this.jobTypeSelected ? this.jobTypeSelected: initJob.jobName
