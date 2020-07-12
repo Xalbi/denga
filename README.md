@@ -1,4 +1,12 @@
-# Denga
+
+<p align="center">
+  <img src="https://i.ibb.co/CH40LQv/Denga-Big.png" alt="Denga" height="150">
+</p>
+<p align="center">
+A modern Agenda Dashboard made with Angular
+</p>
+
+# 
 **Note**: You must be using node version 10.15.x or greater to use denga.
 
 :warning: you can install and use the project but some features still under development :construction:
@@ -10,6 +18,7 @@ A modern [Agenda](https://github.com/agenda/agenda) Dashboard made with :balloon
 
 * Monitor jobs
 * Display jobs details
+* Display jobs stats
 * Filter jobs by name and your own search keys
 * Requeue and delete jobs 
 * Auto refresh with "toggle switch" (on/off) 
@@ -148,10 +157,10 @@ $ npm run build
 - [x] Requeue and delete jobs
 - [x] Make sure to send the user filter in every query
 - [x] Make jobs filtrable by custom properties (~ get an array from config file)
-- [ ] Keep the jobs filtred after a requeue or a delete
+- [x] Display some stats
+- [x] Keep the jobs filtred after a requeue or a delete
 - [ ] Create new job from UI
-- [ ] Display some stats
-- [ ] Manage pagination ?!
+- [ ] ...
 
 
 # Story
