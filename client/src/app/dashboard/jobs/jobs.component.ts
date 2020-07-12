@@ -5,6 +5,8 @@ import { JobsService, Filter } from '../jobs.service';
 import { Subscription, interval } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { JobDetailsModalComponent } from '../job-details-modal/job-details-modal.component';
+import { ConfigService } from '../config.service';
+import { Title } from '@angular/platform-browser';
 
 export interface Job {
 	_id: string,
@@ -33,6 +35,13 @@ export interface JobStates {
 	repeating?: boolean
 }
 
+export interface Config {
+	port: number;
+	collection: string;
+	limit: number;
+	title: string;
+	keys: string[]; 
+}
 
 @Component({
 	selector: 'app-jobs',
@@ -47,7 +56,8 @@ export class JobsComponent implements OnInit {
 		job_names: []
 	};
 
-	jobNames
+	dengaConfig: Config
+	jobNames 
 	selectedNames
 
 	refreshInterval = 1000;
@@ -66,15 +76,14 @@ export class JobsComponent implements OnInit {
 	refreshState = true
 	constructor(
 		private jobsService: JobsService,
-		public jobDetails: MatDialog
+		private configService: ConfigService,
+		public jobDetails: MatDialog,
+		private titleService: Title
 	) { }
 
 	async ngOnInit() {
-		this.jobNames = [
-			"sendmail",
-			"exportMkt",
-			"MarketingAutomationTask"
-		]
+		this.dengaConfig = await this.configService.getConfig().toPromise()
+		this.titleService.setTitle( this.dengaConfig.title );
 
 		await this.init()
 		this.refresh = interval(this.refreshInterval).subscribe(async (val) => {
@@ -179,6 +188,10 @@ export class JobsComponent implements OnInit {
 			repeating
 		}
 
+	}
+
+	onStatsRefresh(names) {
+		this.jobNames = names
 	}
 
 }
