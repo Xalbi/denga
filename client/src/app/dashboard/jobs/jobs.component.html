@@ -4,7 +4,7 @@
 	</a>
 	<div class="head">
 		<mat-toolbar-row class="d-toolbar">
-			<mat-form-field class="d-filter" *ngIf="jobNames">
+			<mat-form-field class="d-filter">
 				<mat-label>Job Names</mat-label>
 				<mat-select [(ngModel)]="selectedNames" (selectionChange)="filterChanged('job_names', 'selectedNames')"
 					multiple>
@@ -22,13 +22,23 @@
 
 	<mat-form-field>
 		<mat-label>Filter</mat-label>
-		<input matInput (keyup)="applyFilter($event)" placeholder="...." autofocus>
+		<input *ngIf="dengaConfig"
+			[title]="!dengaConfig.keys.length? 'If you want to filter the jobs, you must set your search keys!': ''"
+			[disabled]="!dengaConfig.keys.length"
+			matInput
+			(keyup)="applyFilter($event)"
+			placeholder="...."
+			autofocus
+		>
 	</mat-form-field>
 
 	<div class="gridRow">
 		<div class="col-2 col-s-12">
 			<div>
-				<app-stats-overview [refreshState] = "refreshState" ></app-stats-overview>
+				<app-stats-overview 
+					[refreshState] = "refreshState" 
+					(jobNames) = "onStatsRefresh($event)"
+				></app-stats-overview>
 			</div>
 		</div>
 		<div class="col-10 col-s-12">
