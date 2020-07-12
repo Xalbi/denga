@@ -1,17 +1,17 @@
 {
 	"name": "denga",
-	"version": "0.0.4",
+	"version": "0.0.5",
 	"description": "Agenda Dashboard",
 	"main": "index.js",
 	"bin": {
 		"denga": "./built/bin/cli.js"
 	},
 	"scripts": {
-		"build": "(rm -r built/) && tsc && (cd client && ng build) && chmod +x ./built/bin/cli.js",
-		"build:prod": "(rm -r built/) && tsc & (cd client && ng build --prod) && chmod +x ./built/bin/cli.js",
+		"build": "tsc && (cd client && ng build) && chmod +x ./built/bin/cli.js",
+		"build:prod": "(rm -r built/) && tsc && (cd client && ng build --prod) && chmod +x ./built/bin/cli.js",
 		"publish": "(rm -r built/) && tsc & (cd client && ng build --prod) && chmod +x ./built/bin/cli.js && npm publish",
 		"all": "npm run build && npm start",
-		"start": "./built/bin/cli.js --db mongodb://127.0.0.1:27017/eqylink -c job -p 7019",
+		"start": "./built/bin/cli.js --db mongodb://127.0.0.1:27017/eqylink -c job -p 7019 -t local denga",
 		"monitor": "tsc --watch & nodemon ./built/app.js"
 	},
 	"nodemonConfig": {
