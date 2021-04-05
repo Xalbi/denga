@@ -36,6 +36,7 @@ export class StatsOverviewComponent implements OnInit {
   jobTypeSelected;
   loading = false
   
+  nodata = false
 
   ngOnInit(): void {
     this.loading = true
@@ -50,9 +51,11 @@ export class StatsOverviewComponent implements OnInit {
   }
 
 	async refreshStats(){
+    this.nodata = false
 	  this.statsOverviewService.getStatsOverview().toPromise().then(
       res => {
         if (res.length === 0) {
+          this.nodata = true
           return
         } 
         this.totalStats = res.totalJobs
