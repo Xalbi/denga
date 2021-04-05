@@ -6,7 +6,7 @@
             [mode]="'indeterminate'"
         ></mat-spinner>
     </div>
-    <div *ngIf = "!loading && totalStats.data.length"  class="col-12 col-s-6 total-stat-bloc">
+    <div *ngIf="!nodata && !loading && totalStats.data.length"  class="col-12 col-s-6 total-stat-bloc">
         <div>
             <mat-table [dataSource]="totalStats.data" class="mat-elevation-z8">
                 <!-- State Column -->
@@ -28,7 +28,7 @@
             </mat-table>
         </div>
     </div>
-    <div  *ngIf = "!loading && totalStats.data.length"  class="col-12 col-s-6">
+    <div  *ngIf="!nodata && !loading && totalStats.data.length"  class="col-12 col-s-6">
         <div>
             <mat-table  [dataSource]="jobSelected.data"
                 class="mat-elevation-z8">
