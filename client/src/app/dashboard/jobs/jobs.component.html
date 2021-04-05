@@ -27,9 +27,9 @@
 		</mat-toolbar-row>
 	</div>
 
-	<mat-form-field>
+	<mat-form-field *ngIf="dengaConfig">
 		<mat-label>Filter</mat-label>
-		<input *ngIf="dengaConfig"
+		<input 
 			[title]="!dengaConfig.keys.length? 'If you want to filter the jobs, you must set your search keys!': ''"
 			[disabled]="!dengaConfig.keys.length"
 			matInput
