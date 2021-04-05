@@ -13,9 +13,10 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { StatsOverviewComponent } from './stats-overview/stats-overview.component';
 import { StatsOverviewService } from './stats-overview.service';
 import { ConfigService } from './config.service';
+import { ConfirmComponent } from './confirm/confirm.component';
 
 @NgModule({
-	declarations: [JobsComponent, JobDetailsModalComponent, StatsOverviewComponent],
+	declarations: [JobsComponent, JobDetailsModalComponent, StatsOverviewComponent, ConfirmComponent],
 	imports: [
 		MomentModule,
 		CommonModule,
