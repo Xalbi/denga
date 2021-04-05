@@ -14,12 +14,20 @@ A modern Agenda Dashboard made with Angular
 A modern [Agenda](https://github.com/agenda/agenda) Dashboard made with :balloon: Angular :tada:
 
 
+<!-- ![](./demo.gif) -->
+
+<p align="center">
+  <img src="./demo.gif" alt="Denga" height="400">
+</p>
+
+
 # Features
 
 * Monitor jobs
 * Display jobs details
 * Display jobs stats
 * Filter jobs by name and your own search keys
+* Delete jobs by filter
 * Requeue and delete jobs 
 * Auto refresh with "toggle switch" (on/off) 
 * ... WIP :fire:
@@ -158,6 +166,7 @@ $ npm run build
 - [x] Make sure to send the user filter in every query
 - [x] Make jobs filtrable by custom properties (~ get an array from config file)
 - [x] Display some stats
+- [x] Delete jobs by filter
 - [x] Keep the jobs filtred after a requeue or a delete
 - [ ] Create new job from UI
 - [ ] ...
