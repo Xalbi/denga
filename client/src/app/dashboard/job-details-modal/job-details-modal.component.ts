@@ -18,8 +18,6 @@ export class JobDetailsModalComponent implements OnInit {
 
 	
 	async ngOnInit() {
-		console.log(this.data);
-		
 	}
 	
 	onAction(action: Action) {
