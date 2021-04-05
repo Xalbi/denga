@@ -15,6 +15,10 @@ export class JobsService {
 	removeJobs(params):Observable<any> {
 		return this.http.post(this.url + 'remove', params)
 	}
+
+	removeJobsByFilter(params):Observable<any> {
+		return this.http.post(this.url + 'filter_remove', params)
+	}
 	
 	requeueJobs(params):Observable<any> {
 		return this.http.post(this.url + 'requeue', params)
