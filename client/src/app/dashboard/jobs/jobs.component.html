@@ -18,6 +18,13 @@
 				{{refreshState ? 'ON' : 'OFF'}}
 			</mat-slide-toggle>
 		</mat-toolbar-row>
+		<mat-toolbar-row class="d-toolbar">
+			<span class="space"></span>
+			<a class="delete" (click)="deleteJobs()" title="Delete jobs">
+				<mat-icon class="delete-icon">delete_forever</mat-icon>
+				Delete jobs
+			</a>
+		</mat-toolbar-row>
 	</div>
 
 	<mat-form-field>
