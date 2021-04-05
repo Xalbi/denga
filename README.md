@@ -7,9 +7,7 @@ A modern Agenda Dashboard made with Angular
 </p>
 
 # 
-**Note**: You must be using node version 10.15.x or greater to use denga.
-
-:warning: you can install and use the project but some features still under development :construction:
+**Note**: You must be using node version 10.15.x or greater to use denga :warning:.
 
 A modern [Agenda](https://github.com/agenda/agenda) Dashboard made with :balloon: Angular :tada:
 
