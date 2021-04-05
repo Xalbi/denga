@@ -39,6 +39,10 @@
 		>
 	</mat-form-field>
 
+	<div *ngIf="JOB_DATA.length==0">
+		<div class="block">No jobs found.</div>
+	</div>
+
 	<div class="gridRow">
 		<div class="col-2 col-s-12">
 			<div>
@@ -129,7 +133,6 @@
 
 					<tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
 					<tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="openJobDetails(row)">
-						<!-- <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selection.toggle(row)"> -->
 					</tr>
 				</table>
 			</div>
