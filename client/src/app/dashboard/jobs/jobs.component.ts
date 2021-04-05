@@ -7,6 +7,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { JobDetailsModalComponent } from '../job-details-modal/job-details-modal.component';
 import { ConfigService } from '../config.service';
 import { Title } from '@angular/platform-browser';
+import { ConfirmComponent } from '../confirm/confirm.component';
 
 export interface Job {
 	_id: string,
@@ -132,6 +133,29 @@ export class JobsComponent implements OnInit {
 				break;
 			}
 		}
+	}
+
+	async deleteJobs() {
+		let msg = "Delete all jobs ?"
+		if (this.filter.job_names.length || this.filter.search_string.length) {
+			msg = "Delete all filtered jobs ?"
+		}
+
+		const dialogRef = this.jobDetails.open(ConfirmComponent, {
+			width: '30%',
+			data: {
+				title: "Confirm Deletion",
+				msg: msg
+			}
+		});
+
+		dialogRef.afterClosed().subscribe(async result => {
+			if (result && result.action) {
+				if(result.action == 'approve') {
+					await this.jobsService.removeJobsByFilter(this.filter).toPromise()
+				}
+			}
+		});
 	}
 
 	async applyFilter(event: Event) {
