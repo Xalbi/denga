@@ -23,6 +23,11 @@ export class CompanyController {
         return await this.jobsLib.remove(body)
     }
 
+    @Post("/filter_remove")
+    async removeByFilter(@Body() body: any) {
+        return await this.jobsLib.removeByFilter(body)
+    }
+
     @Post("/requeue")
     async requeue(@Body() body: any) {
         return await this.jobsLib.requeue(body)
