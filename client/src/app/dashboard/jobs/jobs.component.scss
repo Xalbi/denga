@@ -5,6 +5,7 @@
     background-color: unset;
     width: min-content;
     height: min-content;
+    color: #fad840;
 }
 
 .logo{
@@ -71,9 +72,33 @@
 
 .d-toolbar {
     display: flex;
+    height: 40px;
 }
 
 .table-container {
     max-height: 85vh;
     overflow: auto;
+}
+
+.block{
+    font-size: xxx-large;
+    position: fixed;
+    z-index: 999;
+    height: 3em;
+    width: 7em;
+    overflow: visible;
+    margin: auto;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
+
+.delete {
+    cursor: pointer;
+}
+
+.delete-icon {
+    color: red;
+    vertical-align: bottom;
 }
