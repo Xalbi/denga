@@ -1,6 +1,6 @@
 {
 	"name": "denga",
-	"version": "0.0.6",
+	"version": "0.0.7",
 	"description": "Agenda Dashboard",
 	"main": "index.js",
 	"bin": {
