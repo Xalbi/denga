@@ -13,7 +13,12 @@ export class JobsLib {
 	async getAll(filter: Filter) {
 		let dbFilter: any = this.prepareFilter(filter);
 		try {
-			let res = await JobsDB().find(dbFilter).limit(settings.get('limit')).toArray()
+			let res = await JobsDB().find(dbFilter).limit(settings.get('limit')).sort({
+				  nextRunAt: -1,
+				  lastRunAt: -1,
+				  lastFinishedAt: -1,
+			}).toArray()
+			
 			res = res.map(c => {
 				c._id = c._id.toString()
 				return c
