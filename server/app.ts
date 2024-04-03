@@ -28,6 +28,7 @@ module.exports = {
 		})
 
 		app.listen(process.env.PORT || settings.get('port'));
-		console.log('Denga started...  URL : http://localhost:' + settings.get('port'));
+		console.log('Denga started: [ ' + settings.get('title') +' ]');
+		console.log('URL: [ http://localhost:' + settings.get('port') +' ]');
 	}
 }
