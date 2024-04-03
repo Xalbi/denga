@@ -60,19 +60,16 @@ export class StatsOverviewComponent implements OnInit {
         } 
         this.totalStats = res.totalJobs
         this.jobTypesStats = res.jobTypes
-        this.jobsTypes = this.jobsTypes ? this.jobsTypes: res.jobTypes
-          .map(jobType => jobType.jobName)
-          .sort()
-
+        this.jobsTypes = res.jobTypes.map(jobType => jobType.jobName).sort()
         this.jobNames.emit(this.jobsTypes)
-
-        let initJob = this.jobTypesStats[0]
-        this.jobTypeSelected = this.jobTypeSelected ? this.jobTypeSelected: initJob.jobName
-        if (this.jobSelected) {
-          this.getStatsForJob(this.jobTypeSelected)
-        }else[
+        if (!this.jobSelected) {          
+          let initJob = this.jobTypesStats.filter(x => typeof x!==undefined).shift();
+          this.jobTypeSelected = initJob.jobName
           this.jobSelected =   initJob
-        ]
+          return
+        }
+
+        this.getStatsForJob(this.jobTypeSelected)
       })
 	}
 

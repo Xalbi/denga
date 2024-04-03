@@ -28,7 +28,7 @@
             </mat-table>
         </div>
     </div>
-    <div  *ngIf="!nodata && !loading && totalStats.data.length"  class="col-12 col-s-6">
+    <div  *ngIf="!nodata && !loading && totalStats.data.length && jobSelected"  class="col-12 col-s-6">
         <div>
             <mat-table  [dataSource]="jobSelected.data"
                 class="mat-elevation-z8">
